@@ -1,0 +1,61 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+data = pd.read_csv('retail_sales_dataset.csv')
+
+
+
+customer_data = data.groupby('Customer ID').agg({
+    'Total Amount': 'sum',
+    'Transaction ID': 'count',
+    'Quantity': 'sum',
+    'Age': 'mean'
+}).rename(columns={
+    'Total Amount': 'Total_Spend',
+    'Transaction ID': 'Transaction_Count',
+    'Quantity': 'Total_Quantity',
+    'Age': 'Average_Age'
+}).reset_index()
+
+
+features = customer_data[['Total_Spend', 'Transaction_Count', 'Total_Quantity', 'Average_Age']]
+scaler = StandardScaler()
+scaled_features = scaler.fit_transform(features)
+
+
+
+sse = []
+range_n_clusters = range(2, 11)
+for k in range_n_clusters:
+    kmeans = KMeans(n_clusters=k, random_state=42)
+    kmeans.fit(scaled_features)
+    sse.append(kmeans.inertia_)
+
+plt.figure(figsize=(10, 6))
+plt.plot(range_n_clusters, sse, marker='o')
+plt.xlabel('Number of Clusters')
+plt.ylabel('Sum of Squared Errors (SSE)')
+plt.title('Elbow Method for Optimal K')
+plt.show()
+
+
+optimal_clusters = 4
+kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
+kmeans.fit(scaled_features)
+
+
+customer_data['Cluster'] = kmeans.labels_
+
+
+
+numeric_columns = customer_data.select_dtypes(include=['number'])
+cluster_summary = numeric_columns.groupby(customer_data['Cluster']).mean()
+print(cluster_summary
+
+sns.pairplot(customer_data, hue='Cluster', vars=['Total_Spend', 'Transaction_Count', 'Total_Quantity', 'Average_Age'])
+plt.show()
