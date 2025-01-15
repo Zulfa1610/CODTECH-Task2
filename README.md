@@ -9,16 +9,16 @@ Domain:Data Analytics
 Duration:Dec 2024 to Jan 2025
 
 
- Project :"Unveiling Customer Insights: A Clustering-Based Approach to Retail Customer Segmentation"
+# Project :"Unveiling Customer Insights: A Clustering-Based Approach to Retail Customer Segmentation"
 
-OVERVIEW OF THE PROJECT
+## OVERVIEW OF THE PROJECT
 
 
-•	Objective: 
+# •	Objective: 
              Perform customer segmentation to group retail customers based on purchasing behavior.
 
              
-•	Data:
+# •	Data:
             Utilize a retail dataset with attributes such as transaction value, purchase frequency, and product preferences.
             
             
@@ -27,22 +27,22 @@ OVERVIEW OF THE PROJECT
 	Use preprocessing techniques to handle missing values and normalize data.
 
 
-•	Analysis:
+# •	Analysis:
 	Identify distinct customer segments based on behavioral patterns.
 	Analyze segment characteristics to understand customer needs and preferences.
 
 
-•	Visualizations:
+# •	Visualizations:
 	Employ scatter plots, bar charts, and cluster visualizations to interpret and present findings.
 
 
-•	Applications:
+# •	Applications:
 	Design targeted marketing strategies for different customer groups.
 	Enhance customer satisfaction by tailoring services to specific segments.
 	Optimize inventory management and improve sales forecasting.
 
 
-•	Outcome: 
+# •	Outcome: 
            Enable data-driven decision-making to strengthen customer relationships and drive business growth.
 
 
